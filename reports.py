@@ -1,16 +1,13 @@
-import os
-import datetime
-import reportlab
+#!/usr/bin/env python3
+from reportlab.platypus import SimpleDocTemplate
+from reportlab.platypus import Paragraph, Spacer
+from reportlab.lib.styles import getSampleStyleSheet
 
-proj_folder = os.getcwd() + '/supplier-data/images/'
+def generate_report(filename, title, info):
+    styles = getSampleStyleSheet()
+    report = SimpleDocTemplate(filename)
+    report_title = Paragraph(title, styles["h1"])
+    report_info = Paragraph(info, styles["BodyText"])
+    empty_line = Spacer(1,20)
 
-
-def generate_report(path):
-    files = os.listdir(path)
-    pdf = ''
-    for file in files:
-        if file.endswith('.txt'):
-            with open(path + file, 'r') as f:
-                text = f.read().splitlines()
-        pdf += 'name: ' + text[0] + '<br/>' + 'weight: ' + text[1] + '<br/><br/>'
-    return pdf
+    report.build([report_title, empty_line, report_info, empty_line]
