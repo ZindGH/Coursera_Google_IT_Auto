@@ -5,7 +5,7 @@ import requests
 
 proj_folder = os.getcwd() + '/supplier-data/descriptions/'
 description = {}
-url = 'http://external_ip/fruits/'
+url = 'http://localhost/fruits/'
 description_keys = ['name', 'weight', 'description']
 
 
